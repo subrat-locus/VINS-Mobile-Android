@@ -1,4 +1,5 @@
-set(boost_include_dir {path}/boost_1_63_0/)
+#TODO: Set Boost path here
+set(boost_include_dir /your-path-to-boost/VINS-Mobile-Android-master/boost_1_79_0/)
 add_library(boost_LIB INTERFACE)
 target_include_directories(
     boost_LIB

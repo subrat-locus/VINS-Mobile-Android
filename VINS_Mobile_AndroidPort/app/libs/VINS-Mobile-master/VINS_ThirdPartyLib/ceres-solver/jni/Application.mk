@@ -33,15 +33,15 @@ APP_PROJECT_PATH := $(call my-dir)
 
 APP_CPPFLAGS += -fno-exceptions
 APP_CPPFLAGS += -frtti
-APP_CPPFLAGS += -std=gnu++11
+APP_CPPFLAGS += -std=c++11
 APP_CPPFLAGS += -fopenmp
 APP_OPTIM := release
 
 # Use libc++ from LLVM. It is a modern BSD licensed implementation of
 # the standard C++ library.
 # APP_STL := c++_static
-APP_STL := gnustl_static
+APP_STL := c++_static
 # APP_ABI := armeabi-v7a # Original Value
-# APP_ABI := arm64-v8a armeabi-v7a x86 x86_64 # This equals the default of all non deprecated archs
-APP_ABI := arm64-v8a
+APP_ABI := arm64-v8a armeabi-v7a x86 x86_64 # This equals the default of all non deprecated archs
+# APP_ABI := arm64-v8a
 APP_PLATFORM := android-24

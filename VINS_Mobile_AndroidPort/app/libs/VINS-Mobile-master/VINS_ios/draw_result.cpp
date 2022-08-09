@@ -397,7 +397,7 @@ void DrawResult::drawGround(cv::Mat &result, vector<Vector3f> &point_cloud, Vect
         pts.y=(*e).p1.y;
         pts2.x=(*e).p2.x;
         pts2.y=(*e).p2.y;
-        cv::line(result, pts, pts2, cvScalar(100,100,100), 1, 8, 0);
+        cv::line(result, pts, pts2, cv::Scalar(100,100,100), 1, 8, 0);
     }
     
 }
@@ -778,7 +778,7 @@ void DrawResult::drawAR(cv::Mat &result, vector<Vector3f> &point_cloud, Vector3f
             pts1.x = FOCUS_LENGTH_X * Pc.x() / Pc.z()+ PX;
             pts1.y = FOCUS_LENGTH_Y * Pc.y() / Pc.z()+ PY;
             
-            cv::circle(result, pts1, 0, cvScalar(0,255,0), 12);
+            cv::circle(result, pts1, 0, cv::Scalar(0,255,0), 12);
         }
         longPressFlag = false;
     }
@@ -985,24 +985,24 @@ void DrawResult::Reprojection(cv::Mat &result, vector<Vector3f> &point_cloud, co
         pt1 = World2VirturCam(p1, depth_marker);
         pt2 = World2VirturCam(p2, depth_marker);
         
-        arrowedLine(result, pt1, pt2, cvScalar(100,100,100),1, 8, 0, 0.02);
-        cv::putText(result, "X", pt2, 0, 0.5, cvScalar(100,100,100));
+        arrowedLine(result, pt1, pt2, cv::Scalar(100,100,100),1, 8, 0, 0.02);
+        cv::putText(result, "X", pt2, 0, 0.5, cv::Scalar(100,100,100));
         
         p1 << 0, -length, 0;
         p2 << 0, length, 0;
         pt1 = World2VirturCam(p1, depth_marker);
         pt2 = World2VirturCam(p2, depth_marker);
         
-        arrowedLine(result, pt1, pt2, cvScalar(100,100,100),1 , 8, 0, 0.02);
-        cv::putText(result, "Y", pt2, 0, 0.5, cvScalar(100,100,100));
+        arrowedLine(result, pt1, pt2, cv::Scalar(100,100,100),1 , 8, 0, 0.02);
+        cv::putText(result, "Y", pt2, 0, 0.5, cv::Scalar(100,100,100));
         
         p1 << 0, 0, -length;
         p2 << 0, 0, length;
         pt1 = World2VirturCam(p1, depth_marker);
         pt2 = World2VirturCam(p2, depth_marker);
         
-        arrowedLine(result, pt1, pt2, cvScalar(100,100,100), 1, 8, 0, 0.02);
-        cv::putText(result, "Z", pt2, 0, 0.5, cvScalar(100,100,100));
+        arrowedLine(result, pt1, pt2, cv::Scalar(100,100,100), 1, 8, 0, 0.02);
+        cv::putText(result, "Z", pt2, 0, 0.5, cv::Scalar(100,100,100));
         
         //draw grid
         {
@@ -1032,7 +1032,7 @@ void DrawResult::Reprojection(cv::Mat &result, vector<Vector3f> &point_cloud, co
                 
                 cv::Point2f pts2;
                 pts2 = World2VirturCam(it.second, depth_marker);
-                cv::line(result, pts, pts2, cvScalar(180,180,180), 1, 8, 0);
+                cv::line(result, pts, pts2, cv::Scalar(180,180,180), 1, 8, 0);
             }
         }
     }
@@ -1055,7 +1055,7 @@ void DrawResult::Reprojection(cv::Mat &result, vector<Vector3f> &point_cloud, co
             camera_coner.push_back(World2VirturCam(it, depth_marker));
         }
         
-        CvScalar camera_color = cvScalar(0,0,255);
+        Scalar camera_color = cv::Scalar(0,0,255);
         cv::line(result, camera_coner[0], camera_coner[1], camera_color, 1, 8, 0);  //RGB
         cv::line(result, camera_coner[1], camera_coner[2], camera_color, 1, 8, 0);
         cv::line(result, camera_coner[2], camera_coner[3], camera_color, 1, 8, 0);
@@ -1079,7 +1079,7 @@ void DrawResult::Reprojection(cv::Mat &result, vector<Vector3f> &point_cloud, co
         pts = World2VirturCam(point_cloud[i], depth_marker);
         if(checkBorder(pts))
         {
-            cv::circle(result, pts, 0, cvScalar(0,255,0), 3);
+            cv::circle(result, pts, 0, cv::Scalar(0,255,0), 3);
         }
     }
     

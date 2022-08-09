@@ -212,7 +212,7 @@ void FeatureTracker::readImage(const cv::Mat &_img, cv::Mat &result, int _frame_
             {
                 for (int i = 0; i< forw_pts.size(); i++)
                 {
-                    //cv::line(result, pre_pts[i], forw_pts[i], cvScalar(0), 3, 8, 0);
+                    //cv::line(result, pre_pts[i], forw_pts[i], cv::Scalar(0), 3, 8, 0);
                     good_pts.push_back(forw_pts[i]);
                     if(forw_pts[i].x < parallax_cnt[i].min.x || forw_pts[i].y < parallax_cnt[i].min.y)
                     {

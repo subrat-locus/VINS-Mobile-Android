@@ -433,7 +433,7 @@ Matrix3d pnp_R;
         prevTime = mach_absolute_time();
         
         cv::Mat gray;
-        cv::cvtColor(input_frame, gray, CV_RGBA2GRAY);
+        cv::cvtColor(input_frame, gray, COLOR_RGBA2GRAY);
         cv::Mat img_with_feature;
         cv::Mat img_equa;
         cv::Ptr<cv::CLAHE> clahe = cv::createCLAHE();
@@ -546,7 +546,7 @@ Matrix3d pnp_R;
                 cv::Mat mask;
                 cv::Mat imageAI = vins.imageAI;
                 if(!imageAI.empty())
-                    cv::cvtColor(imageAI, mask, CV_RGB2GRAY);
+                    cv::cvtColor(imageAI, mask, COLOR_RGB2GRAY);
                 imageAI.copyTo(tmp,mask);
                 cv::cvtColor(tmp, image, CV_BGRA2BGR);
             }
@@ -580,7 +580,7 @@ Matrix3d pnp_R;
             cv::Mat imageROI;
             imageROI = tmp2(cv::Rect(10,COL - down_origin_image.rows- 10, down_origin_image.cols,down_origin_image.rows));
             cv::Mat mask;
-            cv::cvtColor(down_origin_image, mask, CV_RGB2GRAY);
+            cv::cvtColor(down_origin_image, mask, COLOR_RGB2GRAY);
             down_origin_image.copyTo(imageROI, mask);
             
             

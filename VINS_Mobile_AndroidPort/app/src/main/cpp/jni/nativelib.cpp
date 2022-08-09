@@ -93,7 +93,7 @@ Java_com_thkoeln_jmoeller_vins_1mobile_1androidport_VinsJNI_onImageAvailable(JNI
     TS(actual_onImageAvailable);
     
     // convert YUV to RGBA
-    cv::cvtColor(mYuv, srcRgba, CV_YUV2RGBA_NV21);
+    cv::cvtColor(mYuv, srcRgba, COLOR_YUV2RGBA_NV21);
 
     // Rotate 90 degree
     cv::rotate(srcRgba, rotatedRgba, cv::ROTATE_90_CLOCKWISE);

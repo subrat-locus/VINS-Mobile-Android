@@ -2,8 +2,8 @@ set(TARGET_NAME VINS_Android)
 set(${TARGET_NAME}_SRCS
     ViewController.cpp
 )
-
-SET(OpenCV_DIR {path}/OpenCV-android-sdk/sdk/native/jni)
+#TODO: Set path to OpenCV-Android here
+SET(OpenCV_DIR /your-path-to-opencv-android/VINS-Mobile-Android-master/OpenCV-android-sdk/sdk/native/jni)
 find_package(OpenCV REQUIRED)
 
 add_library(

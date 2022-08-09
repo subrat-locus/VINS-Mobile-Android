@@ -1,21 +1,37 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.thkoeln.jmoeller.vins_mobile_androidport"
         minSdkVersion 24
-        targetSdkVersion 25
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
-                arguments '-DANDROID_TOOLCHAIN=gcc', "-DANDROID_STL=gnustl_static", '-DCMAKE_BUILD_TYPE=Release'
-                cppFlags "-std=gnu++11 -frtti -fopenmp -fexceptions -O3 -funsafe-math-optimizations"
+                arguments "-DANDROID_STL=c++_static", '-DCMAKE_BUILD_TYPE=Release'
+                cppFlags "-std=c++11 -frtti -fopenmp -fexceptions -static-openmp -O3 -funsafe-math-optimizations"
+                abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
             }
         }
     }
+    task copyJniLibs(type: Copy) {
+        from 'libs/VINS-Mobile-master/VINS_ThirdPartyLib/ceres-solver/libs'
+        into 'src/main/jniLibs/'
+    }
+    tasks.withType(JavaCompile) {
+        compileTask -> compileTask.dependsOn(copyJniLibs)
+    }
+    clean.dependsOn 'cleanCopyJniLibs'
+//    sourceSets {
+//        main {
+//            jniLibs.srcDirs = ['src/main/jniLibs', 'libs']  // libs
+////            jni.srcDirs = ['src/main/jni']
+////            jniLibs.srcDirs = ['src/main/jniLibs']
+//        }
+//    }
     buildTypes {
         release {
             minifyEnabled false
@@ -30,11 +46,15 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:25.3.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
 }
+
+// libso path set
+
